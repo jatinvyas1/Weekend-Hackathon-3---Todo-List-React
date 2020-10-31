@@ -1,6 +1,6 @@
 import React from "react";
 
-function todoList (){
+function TodoList (){
     return (
         <>
         <textarea id="task"></textarea>
@@ -8,3 +8,5 @@ function todoList (){
         </>
     )
 }
+
+export default TodoList;
