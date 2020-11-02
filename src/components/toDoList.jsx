@@ -1,36 +1,48 @@
 import React, { useState } from "react";
+import Task from "./task";
 
 function TodoList() {
   let [tasks, setTasks] = useState([]);
+  let [newTask, setNewTask] = useState("");
+  const currentTaskChange = (event) => {
+    setNewTask(event.target.value);
+  };
   const handleClick = () => {
-    const taskArea = document.getElementById("task");
-    if (taskArea.value === "") {
+    if (newTask === "") {
       return;
     }
-    setTasks([...tasks, taskArea.value]);
+    setTasks([...tasks, newTask]);
+    setNewTask("");
   };
-  const handleEdit = (index) => {
-    console.log(index);
+  const handleEdit = (indexToChange, newTask) => {
+    const temp = [...tasks];
+    temp[indexToChange] = newTask;
+    setTasks(temp);
   };
-  const handleDelete = (index) => {
-    console.log(index);
+  const handleDelete = (indexToDelete) => {
+    const temp = tasks.filter((element, index) => index !== indexToDelete);
+    setTasks(temp);
   };
 
   return (
     <>
-      <textarea id="task"></textarea>
-      <button id="btn" onClick={handleClick}></button>
+      <textarea
+        id="task"
+        onChange={currentTaskChange}
+        value={newTask}
+      ></textarea>
+      <button id="btn" onClick={handleClick}>
+        +
+      </button>
       {tasks.map((element, index) => {
         return (
-          <div className="list" key={index}>
-            {element}
-            <button className="edit" onClick={() => handleEdit(index)}>
-              E
-            </button>
-            <button className="delete" onClick={() => handleDelete(index)}>
-              D
-            </button>
-          </div>
+          <Task
+            key={index}
+            currentIndex={index}
+            element={element}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+          />
         );
       })}
     </>
