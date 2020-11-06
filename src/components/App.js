@@ -27,13 +27,13 @@ function Task({ currentIndex, handleEdit, handleDelete, element }) {
         <>
           <br />
           <textarea
-            id="editTask"
+            className="editTask"
             onChange={currentTaskChange}
             value={currentTask}
           ></textarea>
           <button
             disabled={currentTask === ""}
-            id="saveTask"
+            className="saveTask"
             onClick={handleSave}
           >
             +
