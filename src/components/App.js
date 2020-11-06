@@ -23,9 +23,7 @@ function Task({ currentIndex, handleEdit, handleDelete, element }) {
 
   return (
     <>
-    <li className="list">
-      {element}
-      </li>
+      <li className="list">{element}</li>
       <button className="edit" onClick={editTask}>
         E
       </button>
@@ -35,17 +33,16 @@ function Task({ currentIndex, handleEdit, handleDelete, element }) {
       {shouldEdit ? (
         <>
           <textarea
-            id="task"
+            id="editTask"
             onChange={currentTaskChange}
             value={currentTask}
           ></textarea>
-          <button id="btn" onClick={handleSave}>
+          <button id="saveTask" onClick={handleSave}>
             +
           </button>
         </>
       ) : null}
-      </>
-    
+    </>
   );
 }
 
