@@ -22,8 +22,10 @@ function Task({ currentIndex, handleEdit, handleDelete, element }) {
   const deleteTask = () => handleDelete(currentIndex);
 
   return (
-    <div className="list">
+    <>
+    <li className="list">
       {element}
+      </li>
       <button className="edit" onClick={editTask}>
         E
       </button>
@@ -42,7 +44,8 @@ function Task({ currentIndex, handleEdit, handleDelete, element }) {
           </button>
         </>
       ) : null}
-    </div>
+      </>
+    
   );
 }
 
