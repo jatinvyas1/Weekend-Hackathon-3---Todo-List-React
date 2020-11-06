@@ -23,25 +23,31 @@ function Task({ currentIndex, handleEdit, handleDelete, element }) {
 
   return (
     <>
-      <li className="list">{element}</li>
+      {shouldEdit ? (
+        <>
+          <br />
+          <textarea
+            id="editTask"
+            onChange={currentTaskChange}
+            value={currentTask}
+          ></textarea>
+          <button
+            disabled={currentTask === ""}
+            id="saveTask"
+            onClick={handleSave}
+          >
+            +
+          </button>
+        </>
+      ) : (
+        <li className="list">{element}</li>
+      )}
       <button className="edit" onClick={editTask}>
         E
       </button>
       <button className="delete" onClick={deleteTask}>
         D
       </button>
-      {shouldEdit ? (
-        <>
-          <textarea
-            id="editTask"
-            onChange={currentTaskChange}
-            value={currentTask}
-          ></textarea>
-          <button id="saveTask" onClick={handleSave}>
-            +
-          </button>
-        </>
-      ) : null}
     </>
   );
 }
